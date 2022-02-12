@@ -4,6 +4,11 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@rehooks/document-title": "^1.0.2",
+    "@rehooks/input-value": "^1.0.0",
+    "@rehooks/local-storage": "^2.4.4",
+    "@rehooks/network-status": "^1.0.0",
+    "@rehooks/online-status": "^1.1.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
