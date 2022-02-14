@@ -1,31 +1,23 @@
 import React from "react";
-import Button, { ButtonSize, ButtonType } from "./components/Button";
+import MenuItem from "./components/menu/MenuItem";
+import Menu from "./components/menu/Menu";
 import "./styles/index.scss";
+import SubMenu from "./components/menu/SubMenu";
 function App() {
   return (
     <div className="App">
-      <Button
-        onClick={(e) => {
-          e.preventDefault();
-        }}
-      >
-        default button
-      </Button>
-      <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
-        primary button
-      </Button>
-      <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
-        danger button
-      </Button>
-      <Button btnType={ButtonType.Link} href="11">
-        link
-      </Button>
-      <Button btnType={ButtonType.Link} disabled href="11" target="_blank">
-        link disabled
-      </Button>
-      <Button btnType={ButtonType.Danger} disabled>
-        danger
-      </Button>
+      <Menu onSelect={(index) => {}} defaultSubMenus={["2"]}>
+        <MenuItem>11</MenuItem>
+        <MenuItem disabled>33</MenuItem>
+        <SubMenu title="44">
+          <MenuItem>11</MenuItem>
+          <MenuItem>2</MenuItem>
+        </SubMenu>
+        <SubMenu title="33">
+          <MenuItem>11</MenuItem>
+          <MenuItem>2</MenuItem>
+        </SubMenu>
+      </Menu>
     </div>
   );
 }
