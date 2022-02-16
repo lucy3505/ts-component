@@ -16,11 +16,12 @@ const SubMenu: FC<SubMenuProp> = (props) => {
   const { activeIndex, onSelect, defaultSubMenus, mode } = context;
   const isOpend =
     index && mode === "vertical" ? defaultSubMenus?.includes(index) : false;
-  debugger;
+
   const classes = classNames("menu-item submenu-item", className, {
     "is-active": index === activeIndex,
   });
   const [open, setOpen] = useState(isOpend);
+
   const renderChildren = () => {
     const classes = classNames("viking-submenu", {
       "menu-opened": open,

@@ -1,0 +1,81 @@
+.viking-tab {
+  // display: flex;
+  // padding-left: 0;
+  // list-style: none;
+  // margin-bottom: 30px;
+  // flex-wrap: nowrap;
+
+  // box-shadow: $tab-box-shadow;
+
+  .tab-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+    border-bottom: $tab-border-width solid $tab-border-color;
+
+    .tab-nav-item {
+      padding: $tab-item-padding-y $tab-item-padding-x;
+      cursor: pointer;
+      border-bottom: $tab-border-width solid $tab-border-color;
+      &.nav-card {
+        margin-right: 5px;
+        border: $tab-border-width solid $tab-border-color;
+        border-bottom: none;
+      }
+      &.is-disabled {
+        color: $tab-item-disabled-color;
+        pointer-events: none;
+        cursor: default;
+      }
+
+      &.is-active,
+      &:hover {
+        &.nav-line {
+          border-bottom: $tab-item-active-border-width solid
+            $tab-item-active-color;
+          color: $tab-item-active-color;
+        }
+        &.nav-card {
+          border: $tab-item-card-border-width solid $tab-item-card-border-color;
+          border-bottom: none;
+          color: $tab-item-active-color;
+        }
+      }
+    }
+  }
+  .tab-item {
+    transition: $tab-transition;
+
+    .tab-nav-item {
+    }
+    // .tab-card-label {
+    //   border: 1px solid;
+    // }
+    &.is-disabled {
+      color: $tab-item-disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
+    &.is-active,
+    &:hover {
+      .tab-card-label {
+        border: $tab-item-card-border-width solid $tab-item-card-border-color;
+        border-bottom: none;
+        color: $tab-item-active-color;
+      }
+      .tab-line-label {
+        border-bottom: $tab-item-active-border-width solid
+          $tab-item-active-color;
+        color: $tab-item-active-color;
+      }
+    }
+    .tab-item-content {
+      display: none;
+    }
+    &.is-active {
+      .tab-item-content {
+        display: block;
+      }
+    }
+  }
+}

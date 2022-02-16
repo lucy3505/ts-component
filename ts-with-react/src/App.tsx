@@ -1,23 +1,48 @@
-import React from "react";
-import MenuItem from "./components/menu/MenuItem";
-import Menu from "./components/menu/Menu";
-import "./styles/index.scss";
-import SubMenu from "./components/menu/SubMenu";
+import React, { useState } from "react";
+import Tabs from "./components/Tab/Tabs";
+import TabItem from "./components/Tab/TabPane";
+import Icon from "@ant-design/icons";
+import { StarOutlined } from "@ant-design/icons";
+import { SmileTwoTone } from "@ant-design/icons";
+import Button from "./components/Button";
+import AntTab from "./components/antTab";
+
 function App() {
+  const defaultTabs = [
+    { label: "tab1", key: `tab-1`, content: `  this is content 1` },
+    { label: "tab2", key: "tab-2", content: `  this is content 2` },
+  ];
+  const [tabs, setTabs] = useState(defaultTabs);
+  const handleChange = () => {};
+
+  const handleAdd = () => {
+    debugger;
+    setTabs([
+      ...tabs,
+      { label: "newTab", key: `tab-${tabs.length + 1}`, content: `` },
+    ]);
+  };
+
   return (
     <div className="App">
-      <Menu onSelect={(index) => {}} defaultSubMenus={["2"]}>
-        <MenuItem>11</MenuItem>
-        <MenuItem disabled>33</MenuItem>
-        <SubMenu title="44">
-          <MenuItem>11</MenuItem>
-          <MenuItem>2</MenuItem>
-        </SubMenu>
-        <SubMenu title="33">
-          <MenuItem>11</MenuItem>
-          <MenuItem>2</MenuItem>
-        </SubMenu>
-      </Menu>
+      <AntTab />
+      <Button
+        onClick={() => {
+          debugger;
+          handleAdd();
+        }}
+      >
+        Add
+      </Button>
+      <Tabs activeIndex="tab-1" onChange={handleChange}>
+        {tabs.map((tab, index) => {
+          return (
+            <TabItem label={tab.label} index={tab.key} key={tab.key}>
+              {tab.content}
+            </TabItem>
+          );
+        })}
+      </Tabs>
     </div>
   );
 }
