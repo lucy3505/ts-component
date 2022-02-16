@@ -4,6 +4,7 @@
 
 @import "mixin.scss";
 
+@import "./animation";
 @import "./../components/Button/style";
 
 @import "./../components/menu/style";
@@ -11,3 +12,5 @@
 @import "./../components/Tab/style";
 
 @import "~antd/dist/antd.css";
+
+@import "./../components/Icon/style.scss";

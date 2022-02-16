@@ -2,7 +2,10 @@ import React, { FC, memo, useContext, useState } from "react";
 import classNames from "classnames";
 import { MenuContext } from "./Menu";
 import { MenuItemProp } from "./MenuItem";
-
+import Icon from "../Icon";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+// import { CSSTransition } from "react-transition-group";
+import Transition from "../transition/Transition";
 interface SubMenuProp {
   title: string;
   index?: string;
@@ -17,11 +20,12 @@ const SubMenu: FC<SubMenuProp> = (props) => {
   const isOpend =
     index && mode === "vertical" ? defaultSubMenus?.includes(index) : false;
 
+  const [open, setOpen] = useState(isOpend);
   const classes = classNames("menu-item submenu-item", className, {
     "is-active": index === activeIndex,
+    "is-opened": open,
+    "is-vertical": context.mode === "vertical",
   });
-  const [open, setOpen] = useState(isOpend);
-
   const renderChildren = () => {
     const classes = classNames("viking-submenu", {
       "menu-opened": open,
@@ -39,7 +43,16 @@ const SubMenu: FC<SubMenuProp> = (props) => {
       }
     });
 
-    return <ul className={classes}>{childrenComponent}</ul>;
+    return (
+      <Transition
+        // classNames="zoom-in-top"
+        appear
+        in={open}
+        timeout={300}
+      >
+        <ul className={classes}>{childrenComponent}</ul>
+      </Transition>
+    );
   };
 
   const handleClick = (e: React.MouseEvent) => {
@@ -76,6 +89,7 @@ const SubMenu: FC<SubMenuProp> = (props) => {
     <li className={classes} key={index} {...hoverEvent}>
       <div className="submenu-title" {...clickEvents}>
         {title}
+        <Icon icon={solid("angle-down")} className="arrow-icon" />
       </div>
       {renderChildren()}
     </li>

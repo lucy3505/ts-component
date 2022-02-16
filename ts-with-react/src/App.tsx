@@ -1,48 +1,41 @@
 import React, { useState } from "react";
-import Tabs from "./components/Tab/Tabs";
-import TabItem from "./components/Tab/TabPane";
-import Icon from "@ant-design/icons";
-import { StarOutlined } from "@ant-design/icons";
-import { SmileTwoTone } from "@ant-design/icons";
-import Button from "./components/Button";
+
 import AntTab from "./components/antTab";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import Icon from "./components/Icon";
+import Menu from "./components/menu/Menu";
+import MenuItem from "./components/menu/MenuItem";
+import SubMenu from "./components/menu/SubMenu";
+import Button from "./components/Button";
+import Transition from "./components/transition/Transition";
 function App() {
-  const defaultTabs = [
-    { label: "tab1", key: `tab-1`, content: `  this is content 1` },
-    { label: "tab2", key: "tab-2", content: `  this is content 2` },
-  ];
-  const [tabs, setTabs] = useState(defaultTabs);
-  const handleChange = () => {};
-
-  const handleAdd = () => {
-    debugger;
-    setTabs([
-      ...tabs,
-      { label: "newTab", key: `tab-${tabs.length + 1}`, content: `` },
-    ]);
-  };
-
+  const [show, setShow] = useState(false);
   return (
     <div className="App">
-      <AntTab />
+      {/* <Icon icon={regular("bell")} theme="primary" size="10x" /> */}
+      {/* // <FontAwesomeIcon icon={brands("twitter")} /> */}
       <Button
+        size="lg"
         onClick={() => {
-          debugger;
-          handleAdd();
+          setShow(!show);
         }}
       >
-        Add
+        toogle
       </Button>
-      <Tabs activeIndex="tab-1" onChange={handleChange}>
-        {tabs.map((tab, index) => {
-          return (
-            <TabItem label={tab.label} index={tab.key} key={tab.key}>
-              {tab.content}
-            </TabItem>
-          );
-        })}
-      </Tabs>
+      {/* <Transition in={show} timeout={300}></Transition> */}
+      <Transition in={show} timeout={300} wrapper={true}>
+        <Button btnType="primary">btn</Button>
+      </Transition>
+      {/* 
+      <Menu>
+        <MenuItem>11</MenuItem>
+        <MenuItem>22</MenuItem>
+        <SubMenu title="33">
+          <MenuItem>33</MenuItem>
+        </SubMenu>
+      </Menu> */}
     </div>
   );
 }
